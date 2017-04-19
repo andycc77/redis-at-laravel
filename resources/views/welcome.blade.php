@@ -16,8 +16,9 @@
                     users:[]
                 },
                 ready:function(){
-                    socket.on('test-channel:aNewMessage',function (data) {
+                    socket.on('test-channel:App\\Events\\ANewMessage',function (data) {
                         this.users.push(data.name);
+                        console.log(data.name);
                     }.bind(this))
                 }
             })

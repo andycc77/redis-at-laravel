@@ -14,12 +14,13 @@
 use Illuminate\Support\Facades\Redis;
 
 Route::get('/', function () {
-    $data = [
-        'event'=>'aNewMessage',
-        'data'=>[
-            'name'=>'Allen'
-        ]
-    ];
-    Redis::publish('test-channel',json_encode($data));
+//    $data = [
+//        'event'=>'aNewMessage',
+//        'data'=>[
+//            'name'=>'Allen'
+//        ]
+//    ];
+//    Redis::publish('test-channel',json_encode($data));
+    event(new \App\Events\ANewMessage(Request::query('name')));
     return view('welcome');
 });
