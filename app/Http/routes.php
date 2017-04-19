@@ -11,7 +11,15 @@
 |
 */
 
+use Illuminate\Support\Facades\Redis;
+
 Route::get('/', function () {
-    Cache::put('foo','bar',10);
-    return Cache::get('foo');
+    $data = [
+        'event'=>'aNewMessage',
+        'data'=>[
+            'name'=>'Allen'
+        ]
+    ];
+    Redis::publish('test-channel',json_encode($data));
+    return view('welcome');
 });
